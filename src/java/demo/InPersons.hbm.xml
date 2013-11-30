@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 30, 2012 7:24:05 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="demo.InPersons" table="in_persons" catalog="rao" discriminator-value="per" >
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <discriminator column="person_type" type="string" length="5" />
+        <property name="name" type="string">
+            <column name="name" length="20" />
+        </property>
+        <property name="company" type="string">
+            <column name="company" length="20" />
+        </property>
+        <subclass name="demo.Employee" discriminator-value="emp" >
+        <property name="salary" type="java.lang.Double">
+            <column name="salary" />
+        </property>
+        <property name="department" type="java.lang.Integer">
+            <column name="department" />
+        </property>
+        </subclass>
+        <subclass name="demo.Customer" discriminator-value="cus" >
+        <property name="address" type="string">
+            <column name="address" length="20" />
+        </property>
+        </subclass>
+    </class>
+</hibernate-mapping>
